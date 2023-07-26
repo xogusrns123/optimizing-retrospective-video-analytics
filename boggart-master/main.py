@@ -15,3 +15,5 @@ if __name__ == "__main__":
     Query = QueryProcessor(query_type= "bbox", video_data= video_data, model= "coco", query_class= 2, # "car"
                             query_conf= None, mfs_approach= 0.5, bg_conf= bg_conf, traj_conf= traj_conf, ioda= None, query_segment_size= 30)
     Query.execute(1,1)
+
+    print("end query")

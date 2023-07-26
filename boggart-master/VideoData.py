@@ -26,6 +26,7 @@ class VideoData:
         self.nchunks = 6
 
     def vname_chunked(self, idx):
+        print(f"{self.video_files_dir}{self.vid_label}{self.hour}_{idx}.mp4")
         return f"{self.video_files_dir}{self.vid_label}{self.hour}_{idx}.mp4"
 
     def get_frame_bounds(self):
@@ -36,7 +37,7 @@ class VideoData:
         start_chunk_idx = start//self.stored_dur
         stop_chunk_idx = (stop-1)//self.stored_dur
 
-        # print(start, stop, start_chunk_idx, stop_chunk_idx)
+        print(f"start:{start}, stop:{stop}, start_chunk_idx:{start_chunk_idx}, stop_chunk_idx:{stop_chunk_idx}")
 
         assert start_chunk_idx == stop_chunk_idx, "Not handling cross chunk frame extraction..."
         # dealing with only a single chunk
@@ -58,7 +59,7 @@ class VideoData:
             else:
                 stop_at = stop
 
-            for frame in self.decoder[1].retrieve_generator(range(start, stop_at, skip)):
+            for frame in self.decoder[1].retrieve(range(start, stop_at, skip)):
                 yield frame
 
             for i in range(int((stop-num_frames)/skip)):

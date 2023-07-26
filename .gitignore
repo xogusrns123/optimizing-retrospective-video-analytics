@@ -1,3 +1,5 @@
+# ignore python cash
+boggart-master/__pycache__/
 # yolov5 file
 yolov5n.pt
 yolov5s.pt

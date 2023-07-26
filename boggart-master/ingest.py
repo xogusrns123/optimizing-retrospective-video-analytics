@@ -85,6 +85,7 @@ class IngestTimeProcessing:
         return max_values.astype(np.int16), second_max_values.astype(np.int16), max_count, second_max_count
 
     def generate_background(self, bg_start, load=False):
+        print("start generate_background")
         bg_proper_fname = self.bg_config.get_proper_bg_fname(self.video_dir, bg_start)
         try:
             if os.path.exists(bg_proper_fname):
@@ -162,10 +163,11 @@ class IngestTimeProcessing:
 
     # return None means no trajectory, return -1 means no video!
     def run_tracker(self, chunk_start, load=False):
-
+        print("start run_tracker function")
         traj_fname = self.traj_config.get_traj_fname(self.video_dir, chunk_start, self.bg_config)
 
         if os.path.exists(traj_fname):
+            print(f"already exist traj_fname:{traj_fname}")
             if load:
                 try:
                     df = pd.read_csv(traj_fname)
